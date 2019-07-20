@@ -4,12 +4,10 @@ const path = require('path');
 __dirname+="/";
 const express = require('express')
 const app = express()
-var cors = require('cors')
 const port = 27017;
 const http = require('http'); 
 const bodyParser = require('body-parser');
 const urlencodeParser = bodyParser.urlencoded({extended: true});
-app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 
