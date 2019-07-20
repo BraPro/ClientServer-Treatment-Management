@@ -46,7 +46,7 @@ app.get('/favicon.ico',function(req,res){
       res.sendFile(path.join(__dirname +"html"+ "/loginpage.html"));
   });
      app.get("/", (req, res) => {
-      res.sendFile(path.join(+__dirname+"/loginpage.html"));
+      res.sendFile(path.join(+__dirname+"html"+ "/loginpage.html"));
     });
       
     app.get("/contactpage", function(req, res) {
@@ -106,8 +106,8 @@ app.post('/login',(req,res) => {
           var transporter = nodemailer.createTransport({
             service: "Gmail",
             auth: {
-              user: "testlocakhost@gmail.com",
-              pass : "S12345678*"
+              user: "wefixbraudeproject@gmail.com",
+              pass : "Wefix123456"
             }
           });  
           db.collection('devices').findOne({ name: req.body.username}, function(err, user) {
@@ -115,7 +115,7 @@ app.post('/login',(req,res) => {
               res.end("Please type your email before tyring to get your password");
            }else if (user.name === req.body.username ){
             var mailOptions= {
-              from: "testlocakhost@gmail.com",
+              from: "wefixbraudeproject@gmail.com",
               to:req.body.username,
               subject:req.body.username +" Thank you for contacting us",
               text: "your password " +user.password +"\ "
