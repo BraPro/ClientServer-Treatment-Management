@@ -27,7 +27,7 @@ db.once('open', function(callback){
         app.use('/html', express.static(path.join(__dirname, 'html')));
         app.use('/js', express.static(path.join(__dirname, 'js')));
         app.use('/img', express.static(path.join(__dirname, 'img')));
-
+        app.use(express.static('Wefix'));
 
 ////////////////get and post requests for web pages//////////////////
 
