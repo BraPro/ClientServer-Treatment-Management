@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const path = require('path');
+const path = require('path')
 __dirname+="/";
 const express = require('express')
 const app = express()
@@ -7,8 +7,7 @@ const port = 27017;
 const http = require('http'); 
 const bodyParser = require('body-parser');
 const urlencodeParser = bodyParser.urlencoded({extended: true});
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json());
+
 
 /// connection to mongodb through mongoose///
 mongoose.connect("mongodb+srv://wefix:wefix123456@clusterwefix-43jvo.mongodb.net/wefix?retryWrites=true&w=majority",{useNewUrlParser:true});
@@ -28,6 +27,8 @@ db.once('open', function(callback){
         app.use('/js', express.static(path.join(__dirname, 'js')));
         app.use('/img', express.static(path.join(__dirname, 'img')));
         app.use(express.static('Wefix'));
+		app.use(bodyParser.urlencoded({ extended: true }))
+        app.use(bodyParser.json());
 
 ////////////////get and post requests for web pages//////////////////
 
@@ -42,7 +43,7 @@ app.get('/favicon.ico',function(req,res){
       res.sendFile(path.join(__dirname +"html"+ "/loginpage.html"));
   });
      app.get("/", (req, res) => {
-      res.sendFile(path.join(+__dirname+"html"+ "/loginpage.html"));
+      res.sendFile(path.join(__dirname+"html"+ "/loginpage.html"));
     });
       
     app.get("/contactpage", function(req, res) {
