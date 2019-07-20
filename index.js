@@ -6,7 +6,6 @@ const express = require('express')
 const app = express()
 var cors = require('cors')
 const port = 27017;
-const User =  require('../server/db/dbConnection');
 const http = require('http'); 
 const bodyParser = require('body-parser');
 const urlencodeParser = bodyParser.urlencoded({extended: true});
