@@ -1,0 +1,240 @@
+
+html,body{
+  background-image: url('bg.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  font-family: 'Numans', sans-serif;
+  
+  }
+  
+  h3{
+  text-align:center
+  
+  }
+  
+  .container{
+  height: 100%;
+  align-content: center;
+  }
+  
+  
+  .card{
+  height: 600px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 600px;
+  background-color: rgba(0,0,0,0.5) !important;
+  }
+  
+  
+  .w3-button {width:50px;}
+  .card-header h3{
+  color: white;
+  }
+  
+  .input-group-prepend span{
+  border-radius: 20px;
+  margin: 6px 0 12px 0;
+  padding: 8px;
+  background-color: #FFC312;
+  color: black;
+  border:0 !important;
+  }
+  
+  
+  .input-group-prepend2 span{
+    border-radius: 20px 0px 0px 20px;
+    margin: 0 0 0 0;
+    padding: 8px;
+    height:40px;
+    background-color: #FFC312;
+    color: black;
+    border:0 !important;
+    }
+	
+  
+  .login_btn{
+  color: black;
+  background-color: #FFC312;
+  width: 100px;
+  }
+  
+  .login_btn:hover{
+  color: black;
+  background-color: white;
+  }
+  
+  a:link{
+	color: black;
+}
+  
+  .links{
+  color: white;
+  }
+  
+  .links a{
+  margin-left: 4px;
+  }
+  
+  
+  .left { float: left; }
+  .right {float: right; }
+  .center { margin-left: 50%; }
+  
+  
+      form input[type="text"],
+      form input[type="email"],
+      form input[type="number"],
+      form input[type="search"],
+      form input[type="password"],select,
+      form textarea {
+          background-color: rgb(255,255,255);
+          border: 1px solid rgb( 186, 186, 186 );
+          border-radius: 2px;
+          -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+          -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+          display: block;
+          font-size: 14px;
+          margin: 6px 0 12px 0;
+          padding: 8px;
+          text-shadow: 0 1px 1px rgba(255, 255, 255, 1);
+          width: 90%;
+   
+          -webkit-transition: all 0.1s linear;
+          -moz-transition: all 0.1s linear;
+          -o-transition: all 0.1s linear;
+            transition: all 0.1s linear;
+      }
+   
+      form [type="text"]:focus,
+      form [type="email"]:focus,
+      form [type="number"]:focus,
+      form [type="search"]:focus,
+      form [type="password"]:focus,
+      form input[type="button"]:focus,select:focus,
+      form textarea:focus,
+      form select:focus {
+          border-color: #4195fc;
+          -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 8px #4195fc;
+          -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 8px #4195fc;
+          box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 8px #4195fc;
+          color: rgb(0,0,0);
+      }
+   
+          form input[type="text"]:invalid:focus,
+          form input[type="email"]:invalid:focus,
+          form input[type="number"]:invalid:focus,
+          form input[type="search"]:invalid:focus,
+          form input[type="password"]:invalid:focus,
+          form input[type="button"]:invalid:focus,select:invalid:focus,
+          form textarea:invalid:focus,
+          form select:invalid:focus {
+              border-color: rgb(248,66,66);
+              -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 8px rgb(248,66,66);
+              -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 8px rgb(248,66,66);
+                box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 8px rgb(248,66,66);
+          }
+  
+          .myButton {
+            -moz-box-shadow: 3px 4px 0px 0px #6c7a00;
+            -webkit-box-shadow: 3px 4px 0px 0px #6c7a00;
+            box-shadow: 3px 4px 0px 0px #6c7a00;
+            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #FFC312), color-stop(1, #ffd500));
+            background:-moz-linear-gradient(top, #FFC312 5%, #ffd500 100%);
+            background:-webkit-linear-gradient(top, #FFC312 5%, #ffd500 100%);
+            background:-o-linear-gradient(top, #FFC312 5%, #ffd500 100%);
+            background:-ms-linear-gradient(top, #FFC312 5%, #ffd500 100%);
+            background:linear-gradient(to bottom, #FFC312 5%, #ffd500 100%);
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFC312', endColorstr='#FFC312',GradientType=0);
+            background-color: #FFC312;
+            -moz-border-radius:15px;
+            -webkit-border-radius:15px;
+            border-radius:15px;
+            border:1px solid #FFC312;
+            display:inline-block;
+            cursor:pointer;
+            color:#064869;
+            font-family:Arial;
+            font-size:17px;
+            padding:7px 25px;
+            text-decoration:none;
+            text-shadow:0px 1px 0px #08cf08;
+          }
+          .myButton:hover {
+            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffd500), color-stop(1, #FFC312));
+            background:-moz-linear-gradient(top, #ffd500 5%, #FFC312 100%);
+            background:-webkit-linear-gradient(top, #ffd500 5%, #FFC312 100%);
+            background:-o-linear-gradient(top, #ffd500 5%, #FFC312 100%);
+            background:-ms-linear-gradient(top, #ffd500 5%, #FFC312 100%);
+            background:linear-gradient(to bottom, #ffd500 5%, #FFC312 100%);
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFC312', endColorstr='#FFC312',GradientType=0);
+            background-color:#ffd500;
+          }
+          .myButton:active {
+            position:relative;
+            top:1px;
+          }
+		  
+		  .footer {
+			   position: fixed;
+               left: 0;
+               bottom: 0;
+               width: 100%;
+               color: black;
+               text-align: center;
+          }
+          
+			
+  #box {
+  position: fixed;
+  height: 200px;
+  width: 400px;
+  text-align: left;
+  color: white;
+  text-shadow: 0 0 5px #387dc2, 0 0 10px #fff, 0 0 15px #fff;
+  letter-spacing:0px;
+  font-family: Arimo;
+  font-size: 58px;
+}
+
+#static {
+  color: #387dc2;
+  text-shadow: 0 0 15px #387dc2, 0 0 25px #387dc2, 0 0 35px #387dc2, 0 0 40px #387dc2;
+  font-size: 58px;
+}
+
+#flashing {
+  text-shadow: none;
+  color: #387dc2;
+  font-weight: bold;
+  font-size: 58px;
+  opacity: 0.5;
+  position: relative;
+  top: 2px;
+  animation: flash 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0.5;
+    color: #387dc2;
+    text-shadow: none;
+  }
+  10% {
+    opacity: 1;
+    color: #387dc2;
+    text-shadow: 0 0 10px #387dc2, 0 0 15px #387dc2, 0 0 20px #387dc2, 0 0 25px #387dc2;
+  }
+  55% {
+    opacity: 0.5;
+    color: #38b3cf;
+    text-shadow: none;
+  }
+  85% {
+    opacity: 1;
+    color: #387dc2;
+    text-shadow: 0 0 10px #387dc2, 0 0 15px #387dc2, 0 0 20px #387dc2, 0 0 25px #387dc2;
+  }
+}
