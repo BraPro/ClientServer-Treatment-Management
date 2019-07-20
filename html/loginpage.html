@@ -31,7 +31,7 @@
 				<h3 id="header">Log in to Your Account</h3>
 			</div>
 			<div class="card-body">
-				<form id="login" action="/login" method="post">
+				<form id="login" action='/login' method="post">
 					<div >
 						<div class="input-group-prepend">
 								<span class="glyphicon glyphicon-user" style="text-align: center"></span>
@@ -60,7 +60,7 @@
 						<div class="buttonsDivInside">
 								<span onclick="showConfirmPassword()" id="signInSpan" class="signIn"><u>Sign In?</u></span>
 								<span style="display: none" onclick="backToLogin()" id="logInSpan" class="signIn"><u>Back LogIn</u></span>
-								<input class="btn btn-primary" style="display: none" type="button" value="Register" id="signInBtn">
+								<input class="btn btn-primary" style="display: none" type="button" value="Register" id="signInBtn" onclick='RegisterValFunction();'>
 								<input class="btn btn-primary" type="button" value="Login" id="login-Btn" onclick='ValidationFunction();'>	
 						</div>		
 					</div>

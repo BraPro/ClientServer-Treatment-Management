@@ -33,7 +33,7 @@ db.once('open', function(callback){
 ////////////////get and post requests for web pages//////////////////
 
 
-app.get('/favicon.ico',function(req,res){
+   app.get('/favicon.ico',function(req,res){
     res.end();
   });
     app.get("/mainpage", function(req, res) {
@@ -52,7 +52,7 @@ app.get('/favicon.ico',function(req,res){
   
 
   
-
+//****//
 
 
   
@@ -99,7 +99,7 @@ app.post('/login',(req,res) => {
 ///////////send email ////////////
 
         app.post('/recpass', urlencodeParser,function(req,res){
-          console.log(req.body );   
+          console.log(req.body);   
           var transporter = nodemailer.createTransport({
             service: "Gmail",
             auth: {
@@ -107,14 +107,14 @@ app.post('/login',(req,res) => {
               pass : "Wefix123456"
             }
           });  
-          db.collection('devices').findOne({ name: req.body.username}, function(err, user) {
+          db.collection('users').findOne({ name: req.body.conemail}, function(err, user) {
             if(user ===null){
               res.end("Please type your email before tyring to get your password");
-           }else if (user.name === req.body.username ){
+           }else if (user.name === req.body.conemail ){
             var mailOptions= {
               from: "wefixbraudeproject@gmail.com",
-              to:req.body.username,
-              subject:req.body.username +" Thank you for contacting us",
+              to:req.body.conemail,
+              subject:req.body.conemail +" Thank you for contacting us",
               text: "your password " +user.password +"\ "
             };
             transporter.sendMail(mailOptions,function(error,info){

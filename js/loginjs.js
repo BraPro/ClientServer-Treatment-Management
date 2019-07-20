@@ -102,19 +102,20 @@ function ValidationFunction(){
  
        
        passelem.title="Good Password";
-       //alert("Login successful!\nEmail:"+emailinput+"\nPassword:"+passinput);    	
-       login(); 
+       //alert("Login successful!\nEmail:"+emailinput+"\nPassword:"+passinput);  
+	   document.getElementById('login').action = "/login"; //Will set it	   
+       document.getElementById("login").submit();
 }
 
 
 function RegisterValFunction(){ 
     
-    var regemail = document.getElementById("regemail").value;
-    var regpass1 = document.getElementById("regpass1").value; 
-    var regpass2 = document.getElementById("regpass2").value; 
-    var regemailelem = document.getElementById("regemail");
-    var regpass1elem = document.getElementById("regpass1");
-    var regpass2elem = document.getElementById("regpass2");
+    var regemail = document.getElementById("inputEmail").value;
+    var regpass1 = document.getElementById("inputPassword").value; 
+    var regpass2 = document.getElementById("inputCPassword").value; 
+    var regemailelem = document.getElementById("inputEmail");
+    var regpass1elem = document.getElementById("inputPassword");
+    var regpass2elem = document.getElementById("inputCPassword");
     regemailelem.setAttribute('pattern',"^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");
     regpass1elem.setAttribute('pattern',"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{6,64}$");
     regpass2elem.setAttribute('pattern',"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{6,64}$");
@@ -218,8 +219,8 @@ if(regpass1!=regpass2)
 }
 
      // alert("Registration Completed!\nEmail:"+regemail+"\nPassword:"+regpass1); 
-     login();   	
-    // return true;
+	 document.getElementById('login').action = "/register"; //Will set it
+	 document.getElementById("login").submit();
 }
 
 
@@ -241,6 +242,8 @@ document.getElementById('logInSpan').style.display = 'none';
 document.getElementById('signInSpan').style.display = 'inline';
 }
 
+
+/*
 function Register(){
 var user = {
     password:document.getElementById('inputPassword').value,
@@ -254,7 +257,7 @@ function login(){
         password:document.getElementById('inputPassword').value,
         email:document.getElementById('inputEmail').value
     }
-    callHttp('http://localhost:8080/login',user,'GET');
+ callHttp('http://localhost:8080/login',user,'GET');
 }
 
 function callHttp(url,data,type){
@@ -273,4 +276,4 @@ function callHttp(url,data,type){
             $('#lblResponse').html('Error connecting to the server.');
         },
     });
-}
+}*/
