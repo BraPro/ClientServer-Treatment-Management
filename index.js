@@ -100,7 +100,8 @@ app.post('/login',(req,res) => {
 ///////////send email ////////////
 
         app.post('/recpass', urlencodeParser,function(req,res){
-          console.log(req.body);   
+          console.log(req.body); 
+		  console.log(req.body.conemail); 
           var transporter = nodemailer.createTransport({
             service: "Gmail",
             auth: {
