@@ -167,7 +167,7 @@ console.log(req.body.conemail);
       from: "wefixbraudeproject@gmail.com",
       to:req.body.conemail,
       subject:"Wefix created a "+req.body.reason+" request.",
-      text:"Thanks for contacting us "+req.body.name+"\nYour Subject : " +req.body.subject +"\n Our Support team is working on the the request have a good day from WeFix Support Team.\n"
+      text:"Thanks for contacting us "+req.body.name+"\nYour Subject : " +req.body.subject +"\nOur Support team is working on the the request have a good day from WeFix Support Team.\n"
     };
     transporter.sendMail(mailOptions,function(error,info){
       if(error) {
