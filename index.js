@@ -65,7 +65,7 @@ app.post('/register',(req,res) => {
     {     
     if(email.length >= 1) //if it does
     {
-     res.end('email exists')
+     res.json({error:'email exists try another one'})
     }
     else if(email.length === 0) // if it does not 
     {
@@ -83,13 +83,13 @@ app.post('/login',(req,res) => {
 	  console.log(req.body.inputPassword);
 	  db.collection('users').findOne({email:req.body.inputEmail}, function(err, user) {
             if(user ===null){
-              res.end("Email does not exists please register first.");
+              res.json({error:"Email does not exists please register first."});
 			  console.log("Email does not exists please register first.");
            } else if ((user.email === req.body.inputEmail) && (user.password === req.body.inputPassword) ){
             res.redirect("mainpage");  
          } else {
            console.log("Password Wrong. please try again");
-           res.end("Password Wrong. please try again");
+           res.json({error:"Password Wrong. please try again"});
          }
   });
 		
@@ -109,7 +109,7 @@ app.post('/login',(req,res) => {
           });  
           db.collection('users').findOne({ name: req.body.conemail}, function(err, user) {
             if(user ===null){
-              res.end("Please type your email before trying to get your password");
+              res.json({error:"Please type your email before trying to get your password"});
            }else if (user.name === req.body.conemail ){
             var mailOptions= {
               from: "wefixbraudeproject@gmail.com",
@@ -127,7 +127,7 @@ app.post('/login',(req,res) => {
               });
          } else {
            console.log("username not found please type your proper email");
-           res.end("Login invalid");
+           res.json({error:"Login invalid"});
          }
   });
 });      
