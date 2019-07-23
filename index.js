@@ -55,7 +55,13 @@ db.once('open', function(callback){
 //****//
 
 
-  
+app.post('/pass2',(req,res) => {
+	res.redirect("loginpage");	
+  });
+
+app.post('/pass1',(req,res) => {
+	res.redirect("mainpage");	
+  });
 
 
 	
@@ -65,14 +71,14 @@ app.post('/register',(req,res) => {
     {     
     if(email.length >= 1) //if it does
     {
-     res.json({error:'email exists try another one'})
+     res.json({error:'email exists try another one'});
     }
     else if(email.length === 0) // if it does not 
     {
         var newUser = new db.users({ email:req.body.inputEmail,password: req.body.inputPassword})
         newUser.save(function (err, book) {
         if (err) return res.error(err);
-		res.sendFile(path.join(__dirname +"html"+ "/loginpage.html"));
+		res.json({ok:'/pass1'});
     });
     }
 });  
@@ -86,7 +92,7 @@ app.post('/login',(req,res) => {
               res.json({error:"Email does not exists please register first."});
 			  console.log("Email does not exists please register first.");
            } else if ((user.email === req.body.inputEmail) && (user.password === req.body.inputPassword) ){
-            res.sendFile(path.join(__dirname +"html"+ "/mainpage.html"));  
+            res.json({ok:'/pass2'});  
          } else {
            console.log("Password Wrong. please try again");
            res.json({error:"Password Wrong. please try again"});
@@ -122,11 +128,11 @@ app.post('/login',(req,res) => {
                 console.log(error);
               }else{
                 console.log("Email send: " + info.response);
-                res.sendFile(path.join(__dirname +"html"+ "/loginpage.html"));             
+                res.json({ok:'/pass1'});             
                 }
               });
          } else {
-           console.log("username not found please type your proper email");
+           console.log("email not found please");
            res.json({error:"Login invalid"});
          }
   });

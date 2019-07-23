@@ -272,6 +272,11 @@ function callHttp(url,data,type){
          if(data.error){
              alert(data.error);
          }
+		 else{
+			  document.getElementById('login').action = data.ok; //Will set it	   
+              document.getElementById("login").submit();
+		 }
+		 
         },
         error: function (xhr, status, error) {
             console.log('Error: ' + error.message);
