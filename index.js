@@ -7,7 +7,7 @@ const port = 27017;
 const http = require('http'); 
 const bodyParser = require('body-parser');
 const urlencodeParser = bodyParser.urlencoded({extended: true});
-var nodemailer=require('nodemailer');
+
 
 
 /// connection to mongodb through mongoose///
