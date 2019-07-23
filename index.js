@@ -7,7 +7,7 @@ const port = 27017;
 const http = require('http'); 
 const bodyParser = require('body-parser');
 const urlencodeParser = bodyParser.urlencoded({extended: true});
-
+var nodemailer=require('nodemailer');
 
 
 /// connection to mongodb through mongoose///
@@ -65,7 +65,7 @@ app.post('/register',(req,res) => {
     {     
     if(email.length >= 1) //if it does
     {
-     res.end(error:'email exists')
+     res.end('email exists')
     }
     else if(email.length === 0) // if it does not 
     {
@@ -83,7 +83,7 @@ app.post('/login',(req,res) => {
 	  console.log(req.body.inputPassword);
 	  db.collection('users').findOne({email:req.body.inputEmail}, function(err, user) {
             if(user ===null){
-              res.end(error:"Email does not exists please register first.");
+              res.end("Email does not exists please register first.");
 			  console.log("Email does not exists please register first.");
            } else if ((user.email === req.body.inputEmail) && (user.password === req.body.inputPassword) ){
             res.redirect("mainpage");  
