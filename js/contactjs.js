@@ -1,4 +1,3 @@
-
 var message="Must contain at least one lowercase,one uppercase,one uppercase,one special character and 6 or more characters";
 var supposemail ="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$";
 var checkspecial = /(?=.*[^a-zA-Z0-9])/;
@@ -13,11 +12,11 @@ var checkspecial = /(?=.*[^a-zA-Z0-9])/;
 
 
 function ValidationFunction(){
-	 var emailinput = document.getElementById("conemail").value;
+
+     var emailinput = document.getElementById("conemail").value;
      var emailelem = document.getElementById("conemail");
      emailelem.setAttribute('pattern',"^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");
  // Validate empty email
-  
   if(emailinput=="")
   { 
       
@@ -46,21 +45,25 @@ function ValidationFunction(){
 	  return false;
   }
   
-  	
-    emailelem.title= "Good Email";
     
+    emailelem.title= "Good Email";
 	checkemail();
     
          	
 }
 
 function checkemail(){
+	
+var e = document.getElementById("reason");
+
 var user = {
-	name:document.getElementById('name').value
-    conemail:document.getElementById('conemail').value
-	reason:document.getElementById('reason').value
+    name:document.getElementById('fname').value,
+    conemail:document.getElementById('conemail').value,
+	reason:e.options[e.selectedIndex].value,
 	subject:document.getElementById('subject').value
 }
+
+
 callHttp('https://wefixproject.herokuapp.com/cont',user,'POST');
 }
 
