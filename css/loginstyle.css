@@ -92,7 +92,7 @@ a:link{
 }
 
 
-.left { float: left; color:black }
+.left { float: left;}
 .right {float: right; }
 .center { margin-left: 50%; }
 
