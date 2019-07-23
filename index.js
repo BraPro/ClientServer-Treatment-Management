@@ -43,7 +43,13 @@ db.once('open', function(callback){
     app.get("/loginpage", function(req, res) {
       res.sendFile(path.join(__dirname +"html"+ "/loginpage.html"));
   });
-     app.get("/", (req, res) => {
+    app.get("/login", function(req, res) {
+      res.sendFile(path.join(__dirname +"html"+ "/loginpage.html"));
+  });
+    app.get("/register", function(req, res) {
+      res.sendFile(path.join(__dirname +"html"+ "/loginpage.html"));
+  });
+    app.get("/", (req, res) => {
       res.sendFile(path.join(__dirname+"html"+ "/loginpage.html"));
     });
     app.get("/contactpage", function(req, res) {
