@@ -74,7 +74,7 @@ function callHttp(url,data,type){
          }
 		 else{
 			  document.getElementById('recpass').action = data.ok; //Will set it	   
-              document.getElementById("recpass").submit();
+              document.getElementById('recpass').submit();
 		 }
 		 
         },
