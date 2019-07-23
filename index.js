@@ -116,8 +116,8 @@ app.post('/recpass', urlencodeParser,function(req,res){
             var mailOptions= {
               from: "wefixbraudeproject@gmail.com",
               to:req.body.conemail,
-              subject:req.body.conemail +" Thank you for contacting us",
-              text: "your password " +user.password +"\ "
+              subject:"Wefix Recover Password Request"
+              text:"Thanks for contacting us "+req.body.conemail+"\nyour password is :" +user.password +"\n Have a good day from WeFix Support Team.""\ "
             };
             transporter.sendMail(mailOptions,function(error,info){
               if(error) {
