@@ -56,12 +56,9 @@ function ValidationFunction(){
 
 function checkemail(){
 var user = {
-	name:document.getElementById('name').value
     conemail:document.getElementById('conemail').value
-	reason:document.getElementById('reason').value
-	subject:document.getElementById('subject').value
 }
-callHttp('https://wefixproject.herokuapp.com/cont',user,'POST');
+callHttp('https://wefixproject.herokuapp.com/recpass',user,'POST');
 }
 
 function callHttp(url,data,type){
@@ -75,8 +72,8 @@ function callHttp(url,data,type){
              alert(data.error);
          }
 		 else{
-			  document.getElementById('cont').action = data.ok; //Will set it	   
-              document.getElementById('cont').submit();
+			  document.getElementById('recpass').action = data.ok; //Will set it	   
+              document.getElementById('recpass').submit();
 		 }
 		 
         },

@@ -52,10 +52,13 @@ db.once('open', function(callback){
     app.get("/contactpage", function(req, res) {
       res.sendFile(path.join(__dirname +"html"+ "/contactpage.html"));  
   });
+    app.get("/passrpage", function(req, res) {
+      res.sendFile(path.join(__dirname +"html"+ "/passrpage.html"));  
+  });
   
 
   
-//****//
+
 
 //////////register to DB//////////////
 app.post('/register',(req,res) => {
@@ -105,7 +108,7 @@ app.post('/login',(req,res) => {
 });
 ///////////////////////////////////////////////////////////////////
 
-///////////send email ////////////
+///////////send email recover password////////////
 
 app.post('/recpass', urlencodeParser,function(req,res){
           console.log(req.body); 
@@ -142,6 +145,47 @@ app.post('/recpass', urlencodeParser,function(req,res){
   });
 });      
 ///////////////////////////////////////////////
+
+
+///////////send email contact////////////
+
+app.post('/cont', urlencodeParser,function(req,res){
+  console.log(req.body); 
+console.log(req.body.conemail); 
+  var transporter = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+      user: "wefixbraudeproject@gmail.com",
+      pass : "Wefix123456"
+    }
+  });  
+  db.collection('users').findOne({email: req.body.conemail}, function(err, user) {
+    if(user ===null){
+      res.json({error:"Email does not exists."});
+   }else if (user.email === req.body.conemail ){
+    var mailOptions= {
+      from: "wefixbraudeproject@gmail.com",
+      to:req.body.conemail,
+      subject:"Wefix created a "+req.body.reason+" request.",
+      text:"Thanks for contacting us "+req.body.name+"\nYour Subject : " +req.body.subject +"\n Our Support team is working on the the request have a good day from WeFix Support Team.\n"
+    };
+    transporter.sendMail(mailOptions,function(error,info){
+      if(error) {
+        console.log(error);
+      }else{
+        console.log("Email send: " + info.response);
+        res.json({ok:'/'});             
+        }
+      });
+ } else {
+   console.log("Something wrong on DB");
+   res.json({error:"Login invalid"});
+ }
+});
+});      
+///////////////////////////////////////////////
+
+
 
 
 ////The Listener config og the port////
