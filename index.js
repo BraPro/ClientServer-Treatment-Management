@@ -37,16 +37,16 @@ db.once('open', function(callback){
    app.get('/favicon.ico',function(req,res){
     res.end();
   });
-    app.get("/mainpage", function(req, res) {
+    app.get("/3", function(req, res) {
             res.sendFile(path.join(__dirname +"html"+ "/mainpage.html"));
         });
-    app.get("/loginpage", function(req, res) {
+    app.get("/1", function(req, res) {
       res.sendFile(path.join(__dirname +"html"+ "/loginpage.html"));
   });
     app.get("/", (req, res) => {
       res.sendFile(path.join(__dirname+"html"+ "/loginpage.html"));
     });
-    app.get("/contactpage", function(req, res) {
+    app.get("/2", function(req, res) {
       res.sendFile(path.join(__dirname +"html"+ "/contactpage.html"));  
   });
   
@@ -72,7 +72,7 @@ app.post('/register',(req,res) => {
         var newUser = new db.users({ email:req.body.inputEmail,password: req.body.inputPassword})
         newUser.save(function (err, book) {
         if (err) return res.error(err);
-		res.redirect("loginpage");
+		res.sendFile(path.join(__dirname +"html"+ "/loginpage.html"));
     });
     }
 });  
@@ -86,7 +86,7 @@ app.post('/login',(req,res) => {
               res.json({error:"Email does not exists please register first."});
 			  console.log("Email does not exists please register first.");
            } else if ((user.email === req.body.inputEmail) && (user.password === req.body.inputPassword) ){
-            res.redirect("mainpage");  
+            res.sendFile(path.join(__dirname +"html"+ "/mainpage.html"));  
          } else {
            console.log("Password Wrong. please try again");
            res.json({error:"Password Wrong. please try again"});
@@ -122,7 +122,7 @@ app.post('/login',(req,res) => {
                 console.log(error);
               }else{
                 console.log("Email send: " + info.response);
-                res.redirect("loginpage");             
+                res.sendFile(path.join(__dirname +"html"+ "/loginpage.html"));             
                 }
               });
          } else {
