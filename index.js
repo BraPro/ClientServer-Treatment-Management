@@ -37,16 +37,19 @@ db.once('open', function(callback){
    app.get('/favicon.ico',function(req,res){
     res.end();
   });
-    app.get("/3", function(req, res) {
+    app.get("/mainpage", function(req, res) {
             res.sendFile(path.join(__dirname +"html"+ "/mainpage.html"));
-        });
-    app.get("/1", function(req, res) {
-      res.sendFile(path.join(__dirname +"html"+ "/loginpage.html"));
+  });
+    app.post("/mainpage", function(req, res) {
+            res.sendFile(path.join(__dirname +"html"+ "/mainpage.html"));
   });
     app.get("/", (req, res) => {
-      res.sendFile(path.join(__dirname+"html"+ "/loginpage.html"));
-    });
-    app.get("/2", function(req, res) {
+      res.sendFile(path.join(__dirname +"html"+ "/loginpage.html"));
+  });
+   app.post("/", (req, res) => {
+      res.sendFile(path.join(__dirname +"html"+ "/loginpage.html"));
+  });
+    app.get("/contactpage", function(req, res) {
       res.sendFile(path.join(__dirname +"html"+ "/contactpage.html"));  
   });
   
@@ -54,14 +57,6 @@ db.once('open', function(callback){
   
 //****//
 
-
-app.post('/pass2',(req,res) => {
-	res.sendFile(path.join(__dirname +"html"+ "/loginpage.html"));	
-  });
-
-app.post('/pass1',(req,res) => {
-	res.sendFile(path.join(__dirname +"html"+ "/mainpage.html"));	
-  });
 
 
 	
@@ -78,7 +73,7 @@ app.post('/register',(req,res) => {
         var newUser = new db.users({ email:req.body.inputEmail,password: req.body.inputPassword})
         newUser.save(function (err, book) {
         if (err) return res.error(err);
-		res.json({ok:'/pass1'});
+		res.json({ok:'/'});
     });
     }
 });  
@@ -92,7 +87,7 @@ app.post('/login',(req,res) => {
               res.json({error:"Email does not exists please register first."});
 			  console.log("Email does not exists please register first.");
            } else if ((user.email === req.body.inputEmail) && (user.password === req.body.inputPassword) ){
-            res.json({ok:'/pass2'});  
+            res.json({ok:'/mainpage'});  
          } else {
            console.log("Password Wrong. please try again");
            res.json({error:"Password Wrong. please try again"});
@@ -128,7 +123,7 @@ app.post('/login',(req,res) => {
                 console.log(error);
               }else{
                 console.log("Email send: " + info.response);
-                res.json({ok:'/pass2'});             
+                res.json({ok:'/'});             
                 }
               });
          } else {
@@ -138,6 +133,9 @@ app.post('/login',(req,res) => {
   });
 });      
 ///////////////////////////////////////////////
+
+
+////The Listener config og the port////
 
  app.listen(process.env.PORT || 8080, function(){
             console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
