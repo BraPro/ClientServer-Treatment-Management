@@ -103,8 +103,9 @@ function ValidationFunction(){
        
        passelem.title="Good Password";
        //alert("Login successful!\nEmail:"+emailinput+"\nPassword:"+passinput);  
-	   document.getElementById('login').action = "/login"; //Will set it	   
-       document.getElementById("login").submit();
+	  // document.getElementById('login').action = "/login"; //Will set it	   
+      // document.getElementById("login").submit();
+	  login();
 }
 
 
@@ -218,9 +219,10 @@ if(regpass1!=regpass2)
 
 }
 
-     // alert("Registration Completed!\nEmail:"+regemail+"\nPassword:"+regpass1); 
-	 document.getElementById('login').action = "/register"; //Will set it
-	 document.getElementById("login").submit();
+    // alert("Registration Completed!\nEmail:"+regemail+"\nPassword:"+regpass1); 
+	// document.getElementById('login').action = "/register"; //Will set it
+	// document.getElementById("login").submit();
+	Register();
 }
 
 
@@ -243,21 +245,21 @@ document.getElementById('signInSpan').style.display = 'inline';
 }
 
 
-/*
+
 function Register(){
 var user = {
-    password:document.getElementById('inputPassword').value,
-    email:document.getElementById('inputEmail').value
+    inputPassword:document.getElementById('inputPassword').value,
+    inputEmail:document.getElementById('inputEmail').value
 }
-callHttp('http://localhost:8080/register',user,'POST');
+callHttp('https://wefixproject.herokuapp.com/register',user,'POST');
 }
 
 function login(){
     var user = {
-        password:document.getElementById('inputPassword').value,
-        email:document.getElementById('inputEmail').value
+        inputPassword:document.getElementById('inputPassword').value,
+        inputEmail:document.getElementById('inputEmail').value
     }
- callHttp('http://localhost:8080/login',user,'GET');
+ callHttp('https://wefixproject.herokuapp.com/login',user,'POST');
 }
 
 function callHttp(url,data,type){
@@ -276,4 +278,4 @@ function callHttp(url,data,type){
             $('#lblResponse').html('Error connecting to the server.');
         },
     });
-}*/
+}
