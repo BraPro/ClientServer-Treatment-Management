@@ -56,11 +56,11 @@ db.once('open', function(callback){
 
 
 app.post('/pass2',(req,res) => {
-	res.redirect("loginpage");	
+	res.sendFile(path.join(__dirname +"html"+ "/loginpage.html"));	
   });
 
 app.post('/pass1',(req,res) => {
-	res.redirect("mainpage");	
+	res.sendFile(path.join(__dirname +"html"+ "/mainpage.html"));	
   });
 
 
@@ -128,7 +128,7 @@ app.post('/login',(req,res) => {
                 console.log(error);
               }else{
                 console.log("Email send: " + info.response);
-                res.json({ok:'/pass1'});             
+                res.json({ok:'/pass2'});             
                 }
               });
          } else {
