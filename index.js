@@ -57,28 +57,27 @@ db.once('open', function(callback){
   
 //****//
 
-
-
-	
+//////////register to DB//////////////
 app.post('/register',(req,res) => {
-	
-    db.collection('users').findOne({email: req.body.inputEmail}),(function(err, email) //find if a value exists
-    {     
-    if(email.length >= 1) //if it does
-    {
-     res.json({error:'email exists try another one'});
-    }
-    else if(email.length === 0) // if it does not 
-    {
-        var newUser = new db.users({ email:req.body.inputEmail,password: req.body.inputPassword})
+	console.log(req.body);
+    db.collection('users').findOne({email: req.body.inputEmail}),(function(err, user){  //find if a value exists     
+    if(user ===null){ //if it does
+		var newUser = new db.users({ email:req.body.inputEmail,password:req.body.inputPassword})
         newUser.save(function (err, book) {
         if (err) return res.error(err);
-		res.json({ok:'/'});
-    });
+         });
+         res.json({ok:'/'})
+        }
+    else // if it does not 
+    {
+       res.json({error:'email exists try another one'});
     }
+    
 });  
 });
+////////////////////////////////////
 
+////////Login////////////
 app.post('/login',(req,res) => {
 	  console.log(req.body.inputEmail);
 	  console.log(req.body.inputPassword);
@@ -141,3 +140,4 @@ app.post('/recpass', urlencodeParser,function(req,res){
  app.listen(process.env.PORT || 8080, function(){
             console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
           });
+//////////////////////////////////////////////
