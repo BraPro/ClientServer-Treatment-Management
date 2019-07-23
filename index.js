@@ -99,7 +99,7 @@ app.post('/login',(req,res) => {
 
 ///////////send email ////////////
 
-        app.post('/recpass', urlencodeParser,function(req,res){
+app.post('/recpass', urlencodeParser,function(req,res){
           console.log(req.body); 
 		  console.log(req.body.conemail); 
           var transporter = nodemailer.createTransport({
@@ -109,9 +109,9 @@ app.post('/login',(req,res) => {
               pass : "Wefix123456"
             }
           });  
-          db.collection('users').findOne({ name: req.body.conemail}, function(err, user) {
+          db.collection('users').findOne({email: req.body.conemail}, function(err, user) {
             if(user ===null){
-              res.json({error:"Please type your email before trying to get your password"});
+              res.json({error:"Email does not exists."});
            }else if (user.name === req.body.conemail ){
             var mailOptions= {
               from: "wefixbraudeproject@gmail.com",
