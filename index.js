@@ -45,7 +45,6 @@ db.once('open', function(callback){
      app.get("/", (req, res) => {
       res.sendFile(path.join(__dirname+"html"+ "/loginpage.html"));
     });
-      
     app.get("/contactpage", function(req, res) {
       res.sendFile(path.join(__dirname +"html"+ "/contactpage.html"));  
   });
@@ -61,7 +60,7 @@ db.once('open', function(callback){
 	
 app.post('/register',(req,res) => {
 	
-    db.collection('users').findOne({email: req.body.email}),(function(err, email) //find if a value exists
+    db.collection('users').findOne({email: req.body.inputEmail}),(function(err, email) //find if a value exists
     {     
     if(email.length >= 1) //if it does
     {
@@ -109,7 +108,7 @@ app.post('/login',(req,res) => {
           });  
           db.collection('users').findOne({ name: req.body.conemail}, function(err, user) {
             if(user ===null){
-              res.end("Please type your email before tyring to get your password");
+              res.end("Please type your email before trying to get your password");
            }else if (user.name === req.body.conemail ){
             var mailOptions= {
               from: "wefixbraudeproject@gmail.com",
@@ -122,7 +121,7 @@ app.post('/login',(req,res) => {
                 console.log(error);
               }else{
                 console.log("Email send: " + info.response);
-                res.redirect("log-in");             
+                res.redirect("loginpage");             
                 }
               });
          } else {
