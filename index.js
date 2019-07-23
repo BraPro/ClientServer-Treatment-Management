@@ -61,15 +61,21 @@ db.once('open', function(callback){
 app.post('/register',(req,res) => {
 	console.log(req.body);
     db.collection('users').findOne({email: req.body.inputEmail}),(function(err, user){  //find if a value exists     
-    if(user ===null){ //if it does
-		var newUser = new db.users({ email:req.body.inputEmail,password:req.body.inputPassword})
-        newUser.save(function (err, book) {
-        if (err) return res.error(err);
-         });
-         res.json({ok:'/'})
-        }
-    else // if it does not 
+    if(user ===null){ 
+	
+	  var data = { 
+        "email": req.body.inputEmail, 
+        "password":req.body.inputPassword 
+       } 
+	  db.collection('users').insertOne(data,function(err, collection){ 
+        if (err) throw err; 
+        console.log("User inserted Successfully");
+        res.json({ok:'/'});          
+    });   
+    }  
+    else 
     {
+	   console.log("User already exists");
        res.json({error:'email exists try another one'});
     }
     
