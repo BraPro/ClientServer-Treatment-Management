@@ -19,6 +19,8 @@
 </head>
 
 <body>
+
+
 <div class="container">
 	<div class="d-flex justify-content-center h-100">
 	<nav>
@@ -31,7 +33,7 @@
 				<h3 id="header"> Recover Password</h3>
 			</div>
 			<div class="card-body">
-				<form id="recpass" action="/recpass" method="post">
+				<form id="recpass" name="recpass" action="/recpass" method="post">
 				
 					<div class="input-group form-group">
 							<div class="input-group-prepend">
@@ -48,13 +50,14 @@
 									</div>
 						   <br>
 					
-			        <div style="text-align:center"> 
-                    <input type="button" value="Submit" id="login-Btn" class="btn float-center login_btn" onclick="ValidationFunction();">
+                    
+			        <div style="text-align:center"> <input type="button" id="SubmitBT" value="Submit" id="login-Btn" class="btn float-center login_btn" onclick="ValidationFunction();"> 
 					<br>
                     <div class="left"><a href='/'>Back LogIn</a></div>					
 					</div>
-				
 				</form>	
+				
+				
 			</div>
 			</div>
 			</div>

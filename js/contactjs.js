@@ -12,25 +12,23 @@ var checkspecial = /(?=.*[^a-zA-Z0-9])/;
 
 
 
-function ValidationFunction(){ 
-    
+function ValidationFunction(){
 	 var emailinput = document.getElementById("conemail").value;
      var emailelem = document.getElementById("conemail");
      emailelem.setAttribute('pattern',"^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");
-     passelem.setAttribute('pattern',"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{6,64}$");
-	    
-
  // Validate empty email
   
   if(emailinput=="")
   { 
+      
       emailelem.focus();
 	  return false;
   }
    // Validate not @ email
    
   if(!emailinput.match("@"))
-  {
+  {    
+      
       emailelem.title= "Not @ on email";
       passelem.title= "Not @ on email";
       emailelem.focus();
@@ -41,19 +39,20 @@ function ValidationFunction(){
   
   if(!(emailinput.match(supposemail)))
   {
+	  
       emailelem.title="Not an email form {example@abc.com}";
       passelem.title="Not an email form {example@abc.com}";
       emailelem.focus();
 	  return false;
   }
   
+  	
     emailelem.title= "Good Email";
     
 	checkemail();
     
          	
 }
-
 
 function checkemail(){
 var user = {
