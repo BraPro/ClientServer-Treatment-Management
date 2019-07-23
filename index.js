@@ -112,7 +112,7 @@ app.post('/recpass', urlencodeParser,function(req,res){
           db.collection('users').findOne({email: req.body.conemail}, function(err, user) {
             if(user ===null){
               res.json({error:"Email does not exists."});
-           }else if (user.name === req.body.conemail ){
+           }else if (user.email === req.body.conemail ){
             var mailOptions= {
               from: "wefixbraudeproject@gmail.com",
               to:req.body.conemail,
@@ -128,7 +128,7 @@ app.post('/recpass', urlencodeParser,function(req,res){
                 }
               });
          } else {
-           console.log("email not found please");
+           console.log("Something wrong on DB");
            res.json({error:"Login invalid"});
          }
   });
