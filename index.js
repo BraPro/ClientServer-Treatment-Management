@@ -60,6 +60,8 @@ db.once('open', function(callback){
 //////////register to DB//////////////
 app.post('/register',(req,res) => {
 	console.log(req.body);
+	console.log("email"+req.body.inputEmail);
+	console.log("password"+req.body.inputPassword);
     db.collection('users').findOne({email: req.body.inputEmail}),(function(err, user){  //find if a value exists     
     if(user ===null){ 
 	
