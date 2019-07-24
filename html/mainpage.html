@@ -56,7 +56,7 @@
                 <div class="col-xs-8">
                 <br><br>
                     <div class="table-cont" id="table-cont"> 
-                            <table class="table table-bordered table-hover" id="workTable" >
+                            <table id="workTable" >
                                 <thead>
                                     <tr class=" bg-primary">
                                         <th scope="col">Treatment Number</th>
@@ -80,12 +80,23 @@
 	var myTable; // use a global for the submit and return data rendering in the examples    
 	$(document).ready(function() {     
         loadTable();
-	}
+	});
+
     function loadTable()
     {
-	myTable =  $('#workTable').DataTable({
-                        dom: 'Bfrtip',  
-                        data: data,                         
+	myTable = $("#workTable").DataTable({
+                        "ordering": true,
+                        "searching": true,
+                        "paging": true,
+                        "scrollY": 200,
+                        "columnDefs": [
+                            {
+                                "targets": 0,
+                                "searchable": true,
+                                "visible": true,
+                                "order": [[0, "asc"]]
+                            }
+                         ] ,                     
                         columns: [
                             {data: "WorkId"},
                             {data: "WorkDesc"},
@@ -163,8 +174,9 @@
                 });
             }
         } );
-        $('#AddTreatmentBtn').on('click', addWork);
-    });
+
+     $('#AddTreatmentBtn').on('click', addWork());
+ 
     //add work to DB 
     function addWork(){
         var carnumber = $('#inputOwnerCarNumber').val();
