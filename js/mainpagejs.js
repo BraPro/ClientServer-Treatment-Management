@@ -1,6 +1,7 @@
-
-        
-    var myTable; // use a global for the submit and return data rendering in the examples    
+   
+   
+   var myTable; // use a global for the submit and return data rendering in the examples    
+    loadTable();
     function loadTable()
     {
         $.ajax({
@@ -14,12 +15,12 @@
                         columns: [
                             {data: "WorkId"},
                             {data: "WorkDesc"},
-                            {data: "date"},
-                            {data: "carnumber"},
+                            {data: "Date"},
+                            {data: "Carnumber"},
                             {
                                 data: null,
                                 className: "center",
-                                defaultContent: '<a href="/Log" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a>'
+                                defaultContent: '<a href="/mainpage" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a>'
                             }
                         ]
                         

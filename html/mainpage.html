@@ -8,15 +8,19 @@
 	<link rel="stylesheet" href="css/mainpagestyle.css" type="text/css">
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jqc-1.12.4/moment-2.18.1/dt-1.10.18/b-1.5.6/sl-1.3.0/datatables.min.css">
 	<!--Custom meta-->
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--Custom Javascript-->
-	<script type = "text/javascript" src="js/mainpagejs.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.js"></script>
+	<!--<script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>-->		
+	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
 </head>
 <body>
    <div class="container-fluid">
@@ -52,7 +56,7 @@
                 <div class="col-xs-8">
                 <br><br>
                     <div class="table-cont" id="table-cont"> 
-                            <table class="table table-bordered table-striped" id="workTable" >
+                            <table class="table table-bordered table-hover" id="workTable" >
                                 <thead>
                                     <tr class=" bg-primary">
                                         <th scope="col">Treatment Number</th>
@@ -69,6 +73,116 @@
      </div>
  </div>
 	 </div>
+	 
+	
+	 <script>
+	 
+	var myTable; // use a global for the submit and return data rendering in the examples    
+	$(document).ready(function() {     
+        loadTable();
+	}
+    function loadTable()
+    {
+	myTable =  $('#workTable').DataTable({
+                        dom: 'Bfrtip',  
+                        data: data,                         
+                        columns: [
+                            {data: "WorkId"},
+                            {data: "WorkDesc"},
+                            {data: "Date"},
+                            {data: "Carnumber"},
+                            {
+                                data: null,
+                                className: "center",
+                                defaultContent: '<a href="/mainpage" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a>'
+                            }
+                        ]
+						});
+    
+        $.ajax({
+            url: '/work',
+            method: 'get',
+            dataType: 'json',
+            success: function (data){
+			     myTable.clear().draw();
+                 myTable.rows.add(data).draw();
+                } 
+            });
+        }
+ 
+         // Edit record
+        $('#workTable').on('click', 'a.editor_edit', function (e) {
+            e.preventDefault();
+            if($(this).context.innerHTML=="Edit")
+            {
+                $(this).context.innerText ="Save";
+                var $row = $(this).closest("tr");
+                var $tdElement = $row.find("td")[1];
+                var txt = $tdElement.innerHTML;
+                $tdElement.innerHTML = "<input style='width:100%;background-color: rgba(255, 255, 128, .5);' type='text' value='" + txt + "'>";
+            }
+            else{
+                $(this).context.innerText ="Edit";
+                var $row = $(this).closest("tr");
+                var $tdElement = $row.find("td")[1];
+                var id = $row.find("td")[0].innerHTML;
+                var workDesc = $row.find("td").find("input").first().val();
+                var json = {
+                    'WorkId': id,
+                    'WorkDesc': workDesc
+                }
+                $.ajax({
+                    url: '/work',
+                    type: 'PUT',
+                    data: json,
+                    success: function(result) {
+                        $tdElement.innerHTML = workDesc
+                    }
+                });
+            }
+       } );
+ 
+        // Delete a record
+        $('#workTable').on('click', 'a.editor_remove', function (e) {
+            e.preventDefault();
+            
+            var answer = confirm("Do you want to delete selected item?")
+            if (answer) {
+                var $row = $(this).closest("tr");
+                var id = $row.find("td")[0].innerHTML;
+                $(this).closest('tr').remove();
+				
+                $.ajax({
+                    url: '/work',
+                    type: 'DELETE',
+					data: id,
+                    success: function(result) {
+                        myTable.destroy();
+                        loadTable();
+                    }
+                });
+            }
+        } );
+        $('#AddTreatmentBtn').on('click', addWork);
+    });
+    //add work to DB 
+    function addWork(){
+        var carnumber = $('#inputOwnerCarNumber').val();
+        var treatmentinfo = $('#inputTreatmentInformation').val();
+        
+        var json = {
+          'WorkDesc': treatmentinfo,
+          'Carnumber': carnumber
+        }
+       
+            var response = $.post('/work', json);
+            response.done(function(){
+                myTable.destroy();
+                loadTable();
+            });
+        }
+    </script>
+
 
 
 		<footer class="footer">
