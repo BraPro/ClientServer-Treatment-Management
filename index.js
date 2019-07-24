@@ -190,7 +190,7 @@ console.log(req.body.conemail);
 ///Select from////
 app.get('/work', (req, res) => {
      console.log("Select Table");
-        db.collection('cars').find({}, { project: { _id: 0}}).toArray( (err,data ) => {
+        db.collection('cars').find({}). project({ _id: 0}).toArray( (err,data ) => {
             if (!err) {
                   res.json(data)
             }else {
