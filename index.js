@@ -10,6 +10,7 @@ const urlencodeParser = bodyParser.urlencoded({extended: true});
 var nodemailer=require('nodemailer');
 
 
+
 /// connection to mongodb through mongoose///
 mongoose.connect("mongodb+srv://wefix:wefix123456@clusterwefix-43jvo.mongodb.net/wefix?retryWrites=true&w=majority",{useNewUrlParser:true});
 var db=mongoose.connection; 
@@ -199,7 +200,7 @@ app.get('/work', (req, res) => {
         } );
 });
 ///Edit by workid////
-app.PUT('/work', (req, res) => {
+/*app.PUT('/work', (req, res) => {
        console.log(req.body);
         db.collection('cars').updateOne({ "WorkId" : req.body.WorkId}, // specifies the document to update
     {
@@ -214,7 +215,7 @@ app.PUT('/work', (req, res) => {
                 console.log('Error in retrieving cars list :' + err);
             }
         } );
-});
+});*/
 ///Add by workid////
 app.post('/work', (req, res) => {
     console.log(req.body);
@@ -233,7 +234,7 @@ app.post('/work', (req, res) => {
 });
 
 ///Delete by workid////
-app.DELETE('/work', (req, res) => {
+/*app.DELETE('/work', (req, res) => {
 
   console.log(req.body);
 	db.collection('cars').findOneAndDelete({ WorkId:req.body.WorkId}, function(err, user) 
@@ -249,7 +250,7 @@ app.DELETE('/work', (req, res) => {
           res.json({ok:'Record deleted Successfully'});       
       };  
       });       
-});
+});*/
 
 ////////////////////////////////////////////
 
