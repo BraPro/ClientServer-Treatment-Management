@@ -15,7 +15,6 @@
                             {data: "WorkId"},
                             {data: "WorkDesc"},
                             {data: "date"},
-                            {data: "email"},
                             {data: "carnumber"},
                             {
                                 data: null,
@@ -49,11 +48,11 @@
                 var id = $row.find("td")[0].innerHTML;
                 var workDesc = $row.find("td").find("input").first().val();
                 var json = {
-                    'id': id,
-                    'workDesc': workDesc
+                    'WorkId': id,
+                    'WorkDesc': workDesc
                 }
                 $.ajax({
-                    url: '/work/',
+                    url: '/work',
                     type: 'PUT',
                     data: json,
                     success: function(result) {
@@ -72,9 +71,11 @@
                 var $row = $(this).closest("tr");
                 var id = $row.find("td")[0].innerHTML;
                 $(this).closest('tr').remove();
+				
                 $.ajax({
-                    url: '/work/'+id,
+                    url: '/work',
                     type: 'DELETE',
+					data: id,
                     success: function(result) {
                         myTable.destroy();
                         loadTable();
@@ -90,8 +91,8 @@
         var treatmentinfo = $('#inputTreatmentInformation').val();
         
         var json = {
-          'workDesc': treatmentinfo,
-          'carnumber': carnumber
+          'WorkDesc': treatmentinfo,
+          'Carnumber': carnumber
         }
        
             var response = $.post('/work', json);

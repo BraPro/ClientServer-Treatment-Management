@@ -187,22 +187,133 @@ console.log(req.body.conemail);
 
 
 ///////////Tables Add+Edit+Delete////////////
-
- app.get('/work', (req, res) => {
-        db.collection('cars').find({}).toArray( (err,data ) => {
+///Select from////
+app.get('/work', (req, res) => {
+     console.log("Select Table");
+        db.collection('cars').find({}, { projection: { _id: 0}}).toArray( (err,data ) => {
             if (!err) {
-                  return res.json(data)
+                  res.json(data)
             }else {
                 console.log('Error in retrieving cars list :' + err);
             }
         } );
-    });
+});
+///Edit by workid////
+app.PUT('/work', (req, res) => {
+       console.log(req.body);
+        db.collection('cars').updateOne({ "WorkId" : req.body.WorkId}, // specifies the document to update
+    {
+      $set: {  "WorkDesc" : req.body.WorkDesc},
+      $currentDate: { "lastModified": true }
+    }
+).toArray( (err,data ) => {
+            if (!err) {
+				  console.log("Record Edited Successfully");
+                  res.json({ok:'Record Edited Successfully'}); 
+            }else {
+                console.log('Error in retrieving cars list :' + err);
+            }
+        } );
+});
+///Add by workid////
+app.post('/work', (req, res) => {
+    console.log(req.body);
+    var data = { 
+     "WorkId" : GetWorkid(), 
+     "WorkDesc" :req.body.WorkDesc, 
+     "Date" : displayTime(),
+     "Carnumber" : req.body.Carnumber 
+   }
+	
+        db.collection('cars').insertOne(data,function(err, collection){ 
+        if (err) throw err; 
+        console.log("Record Added Successfully");
+        res.json({ok:'Record Added Successfully'}); 
+      });
+});
 
+///Delete by workid////
+app.DELETE('/work', (req, res) => {
+  
+  console.log(req.body);
+	db.collection('cars').findOneAndDelete({ WorkId:req.body.WorkId}, function(err, user) 
+  {
+    if(user ===null ){
+		
+	  console.log("rare error should have find the workid");
+      res.end("This Treatment does not exist");
 
-
-
+    }else 
+      {
+          console.log("Record deleted Successfully");
+          res.json({ok:'Record deleted Successfully'});       
+      };  
+      });       
+});
 
 ////////////////////////////////////////////
+
+////Utility Functions////
+
+function GetWorkid() {
+	var count;
+	var ObjectID = require('mongodb').ObjectID;
+	db.collection('IdController').findOne({}).toArray( (err,data ) => {
+            if (!err) {
+				    count=data.count;
+				    count++;
+				      db.collection('IdController').updateOne({ "_id" : ObjectID("5d3864e81c9d440000899980")}, // specifies the document to update
+					{
+					$set: {"Count" : count},
+					$currentDate: { "lastModified": true }
+					})
+				  return count; 
+				  
+          }else {
+                console.log('Error in retrieving cars list :' + err);
+				return 1;
+            }
+        } );
+  }
+
+  
+function displayTime() {
+    var str = "";
+
+    var currentTime = new Date();
+	var year = currentTime.getFullYear() ;           
+	var month = currentTime.getMonth();
+	var day = currentTime.getDate();
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    var seconds = currentTime.getSeconds();
+
+	if (day < 10) {
+        day = "0" + day;
+    }
+	
+	if (month < 10) {
+        month = "0" + month;
+    }
+	
+    if (hours < 10) {
+        hours = "0" + hours;
+    }
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+	if (seconds < 10) {
+        seconds = "0" + seconds;
+    }
+	
+	str += day+"/"+month+"/"+year+" ";
+    str += hours + ":" + minutes + ":" + seconds + " ";
+
+    return str;
+}
+
+////////////////////////////////////
+
 
 ////The Listener config og the port////
 
