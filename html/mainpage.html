@@ -17,112 +17,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script>
-        
-    var myTable; // use a global for the submit and return data rendering in the examples    
-    function loadTable()
-    {
-        $.ajax({
-            url: '/work',
-            method: 'get',
-            dataType: 'json',
-            success: function (data){
-                myTable =  $('#workTable').DataTable( {
-                        dom: 'Bfrtip',  
-                        data: data,                         
-                        columns: [
-                            {data: "WorkId"},
-                            {data: "WorkDesc"},
-                            {data: "date"},
-                            {data: "email"},
-                            {data: "carnumber"},
-                            {
-                                data: null,
-                                className: "center",
-                                defaultContent: '<a href="/Log" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a>'
-                            }
-                        ]
-                        
-                }); 
-            }
-        });
-    }
-    $(document).ready(function() {
-               
-        loadTable();
-         // Edit record
-        $('#workTable').on('click', 'a.editor_edit', function (e) {
-            e.preventDefault();
-            if($(this).context.innerHTML=="Edit")
-            {
-                $(this).context.innerText ="Save";
-                var $row = $(this).closest("tr");
-                var $tdElement = $row.find("td")[1];
-                var txt = $tdElement.innerHTML;
-                $tdElement.innerHTML = "<input style='width:100%;background-color: rgba(255, 255, 128, .5);' type='text' value='" + txt + "'>";
-            }
-            else{
-                $(this).context.innerText ="Edit";
-                var $row = $(this).closest("tr");
-                var $tdElement = $row.find("td")[1];
-                var id = $row.find("td")[0].innerHTML;
-                var workDesc = $row.find("td").find("input").first().val();
-                var json = {
-                    'id': id,
-                    'workDesc': workDesc
-                }
-                $.ajax({
-                    url: '/work/',
-                    type: 'PUT',
-                    data: json,
-                    success: function(result) {
-                        $tdElement.innerHTML = workDesc
-                    }
-                });
-            }
-       } );
- 
-        // Delete a record
-        $('#workTable').on('click', 'a.editor_remove', function (e) {
-            e.preventDefault();
-            
-            var answer = confirm("Do you want to delete selected item?")
-            if (answer) {
-                var $row = $(this).closest("tr");
-                var id = $row.find("td")[0].innerHTML;
-                $(this).closest('tr').remove();
-                $.ajax({
-                    url: '/work/'+id,
-                    type: 'DELETE',
-                    success: function(result) {
-                        myTable.destroy();
-                        loadTable();
-                    }
-                });
-            }
-        } );
-        $('#AddTreatmentBtn').on('click', addWork);
-    });
-    //add work to DB 
-    function addWork(){
-        var carnumber = $('#inputOwnerCarNumber').val();
-        var treatmentinfo = $('#inputTreatmentInformation').val();
-        
-        var json = {
-          'workDesc': treatmentinfo,
-          'carnumber': carnumber
-        }
-       
-            var response = $.post('/work', json);
-            response.done(function(){
-                myTable.destroy();
-                loadTable();
-            });
-        }
-   
-
-	     
-    </script>
 </head>
 <body>
    <div class="container-fluid">
@@ -141,7 +35,7 @@
                         <div class="form-group">
                             <label for="inputOwnerCarNumber">Car Plate Number</label>
                             <div tclass="input-group input-group">
-                                <textarea rows="1" cols="20" type="OwnerCarNumber" class="form-control" id="inputOwnerCarNumber" placeholder="Plate Number" style="resize: none;" "=""></textarea>
+                                <textarea rows="1" cols="20" type="OwnerCarNumber" class="form-control" id="inputOwnerCarNumber" placeholder="Plate Number" style="resize: none;"></textarea>
                             </div>	
                             
                         </div>
@@ -155,18 +49,27 @@
                     </div>
 
 
-                <div class="col-xs-8 ">
+                <div class="col-xs-8">
                 <br><br>
                     <div class="table-cont" id="table-cont"> 
-                            <div id="workTable_wrapper" class="dataTables_wrapper no-footer"><div id="workTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="" placeholder="" aria-controls="workTable"></label></div><table class="table table-bordered table-striped dataTable no-footer" id="workTable" role="grid" aria-describedby="workTable_info" style="width: 1047px;">
+                            <table class="table table-bordered table-striped" id="workTable" >
                                 <thead>
-                                    <tr class=" bg-primary" role="row"><th scope="col" class="sorting_asc" tabindex="0" aria-controls="workTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Treatment Number: activate to sort column descending" style="width: 163px;">Treatment Number</th><th scope="col" class="sorting" tabindex="0" aria-controls="workTable" rowspan="1" colspan="1" aria-label="Treatment Information: activate to sort column ascending" style="width: 193px;">Treatment Information</th><th scope="col" class="sorting" tabindex="0" aria-controls="workTable" rowspan="1" colspan="1" aria-label=" Date: activate to sort column ascending" style="width: 149px;"> Date</th><th scope="col" class="sorting" tabindex="0" aria-controls="workTable" rowspan="1" colspan="1" aria-label="Worker email: activate to sort column ascending" style="width: 120px;">Worker email</th><th scope="col" class="sorting" tabindex="0" aria-controls="workTable" rowspan="1" colspan="1" aria-label="Car Number: activate to sort column ascending" style="width: 109px;">Car Number</th><th scope="col" class="center sorting" tabindex="0" aria-controls="workTable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 85px;">Action</th></tr>
+                                    <tr class=" bg-primary">
+                                        <th scope="col">Treatment Number</th>
+                                        <th scope="col">Treatment Information</th>
+                                        <th scope="col"> Date</th>
+                                        <th scope="col">Worker email</th>
+                                        <th scope="col">Car Number</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
                                 </thead>
-                            <tbody><tr role="row" class="odd"><td class="sorting_1">158</td><td>asd44dfg6</td><td>02/06/2019 15:41:12</td><td>ssadf@sdf3.com</td><td>asdf</td><td class=" center"><a href="/Log" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a></td></tr><tr role="row" class="even"><td class="sorting_1">160</td><td>dsfg</td><td>08/06/2019 13:04:57</td><td></td><td>dfg</td><td class=" center"><a href="/Log" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a></td></tr><tr role="row" class="odd"><td class="sorting_1">161</td><td>dsfg</td><td>08/06/2019 13:04:58</td><td></td><td>dfg</td><td class=" center"><a href="/Log" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a></td></tr><tr role="row" class="even"><td class="sorting_1">163</td><td>dsfg</td><td>08/06/2019 13:04:58</td><td></td><td>dfg</td><td class=" center"><a href="/Log" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a></td></tr><tr role="row" class="odd"><td class="sorting_1">164</td><td>dsfg</td><td>08/06/2019 13:04:58</td><td></td><td>dfg</td><td class=" center"><a href="/Log" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a></td></tr><tr role="row" class="even"><td class="sorting_1">165</td><td>dsfg</td><td>08/06/2019 13:04:59</td><td></td><td>dfg</td><td class=" center"><a href="/Log" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a></td></tr><tr role="row" class="odd"><td class="sorting_1">166</td><td>dsfg</td><td>08/06/2019 13:04:59</td><td></td><td>dfg</td><td class=" center"><a href="/Log" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a></td></tr><tr role="row" class="even"><td class="sorting_1">167</td><td>dsfg</td><td>08/06/2019 13:04:59</td><td></td><td>dfg</td><td class=" center"><a href="/Log" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a></td></tr><tr role="row" class="odd"><td class="sorting_1">168</td><td>dsfg</td><td>08/06/2019 13:04:59</td><td></td><td>dfg</td><td class=" center"><a href="/Log" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a></td></tr><tr role="row" class="even"><td class="sorting_1">169</td><td>dsfg</td><td>08/06/2019 13:04:59</td><td></td><td>dfg</td><td class=" center"><a href="/Log" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a></td></tr></tbody></table><div class="dataTables_info" id="workTable_info" role="status" aria-live="polite">Showing 1 to 10 of 25 entries</div><div class="dataTables_paginate paging_simple_numbers" id="workTable_paginate"><a class="paginate_button previous disabled" aria-controls="workTable" data-dt-idx="0" tabindex="0" id="workTable_previous">Previous</a><span><a class="paginate_button current" aria-controls="workTable" data-dt-idx="1" tabindex="0">1</a><a class="paginate_button " aria-controls="workTable" data-dt-idx="2" tabindex="0">2</a><a class="paginate_button " aria-controls="workTable" data-dt-idx="3" tabindex="0">3</a></span><a class="paginate_button next" aria-controls="workTable" data-dt-idx="4" tabindex="0" id="workTable_next">Next</a></div></div>
-                </div>
-            </div>
-    	</div>
-    </div>
+                            </table>
+                      </div>
+             </div>
+          </div>
+     </div>
+ </div>
+	 </div>
 
 
 		<footer class="footer">

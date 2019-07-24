@@ -186,7 +186,23 @@ console.log(req.body.conemail);
 ///////////////////////////////////////////////
 
 
+///////////Tables Add+Edit+Delete////////////
 
+ app.get('/work', (req, res) => {
+        db.collection('cars').find({}).toArray( (err,data ) => {
+            if (!err) {
+                  return res.json(data)
+            }else {
+                console.log('Error in retrieving cars list :' + err);
+            }
+        } );
+    });
+
+
+
+
+
+////////////////////////////////////////////
 
 ////The Listener config og the port////
 
