@@ -190,7 +190,7 @@ console.log(req.body.conemail);
 ///Select from////
 app.get('/work', (req, res) => {
      console.log("Select Table");
-        db.collection('cars').find({}, { projection: { _id: 0}}).toArray( (err,data ) => {
+        db.collection('cars').find({}, { project: { _id: 0}}).toArray( (err,data ) => {
             if (!err) {
                   res.json(data)
             }else {
@@ -234,7 +234,7 @@ app.post('/work', (req, res) => {
 
 ///Delete by workid////
 app.DELETE('/work', (req, res) => {
-  
+
   console.log(req.body);
 	db.collection('cars').findOneAndDelete({ WorkId:req.body.WorkId}, function(err, user) 
   {
