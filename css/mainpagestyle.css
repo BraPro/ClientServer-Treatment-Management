@@ -247,33 +247,18 @@ html,body{
 
 
 .sectionHeader{
-  height: 30px;
+  height: 60px;
   background-color: #001f3f;
   color: white;
   text-align: center;
-  padding: 9px;
-  font-size: 10px;
-  letter-spacing: 1px;
+  padding: 5px;
+  font-size: 5px;
+  letter-spacing: 0px;
   font-weight: bold;
   font-family: “HelveticaNeueLTPro-BdCn”, HelveticaNeue-CondensedBold, "Oswald";
 }
 
-.sectionContent {
-  background-color: white;
-}
 
-table  {
-  border: 1px solid #001f3f;
-  border-collapse: collapse;
-  width: 100%;
-  padding:0; 
-  margin:0;
-  font-family:helvetica;
-  box-sizing: border-box;
-  font-size: 12px;
-  color: #001f3f;
-  transisition: 0.5s;
-}
 th{
   padding: 10px;
   font-size: 15px;
@@ -282,34 +267,4 @@ th{
   color: #fff;
   background-color: #d9534f;
   border-color: #d43f3a;
-  
-}
-
-td {
-  border: 1px solid #001f3f;
-  padding: 10px;
-  color: #001f3f;
-  font-weight: bold;
-}
-
-td + td{
-  color: #747474;
-  text-align: center;
-  font-weight: normal;
-}
-tr{
-  background-color: white;
-    transition: 0.5s;
-}
-
-tr:nth-child(even){
-  background-color: #efefef;
-}
-tr+tr:hover{
-  background-color:#D5F1F6;
-  cursor:default;
-  transition: none;
-}
-tr + tr {
-  height: 50px;
 }
