@@ -142,13 +142,13 @@
                     'Date' : Datush,
                     'Carnumber' : Carnumber,
                 }
-                
+
                 $.ajax({
                     url: '/edit',
                     type: 'POST',
                     data: json,
                     success: function(result) {
-                        $tdElement.innerHTML = workDesc
+                        $tdElement.innerHTML = workDesc;
                     }
                 });
             }

@@ -263,27 +263,19 @@ app.post('/delete', (req, res) => {
 ////Utility Functions////
 
 function GetWorkid() {
-	var count;
+	var count="100";
   var ObjectID = require('mongodb').ObjectID;
-  
-  db.collection('IdController').find({}).project({ _id: 0}).toArray( (err,data) => {
+
+
+  Controller.findByIdAndUpdate("5d3926c821988b001709ed91", {$inc: {count:1}}, function (err, data) {    
+   
     if (err) {
       console.log('Error in retrieving cars list :' + err);
-    }});
-    count=data[0].toObject();
-    console.log(count);
-    count++;
-    console.log(count);
-    var newc={
-      'count':count
     }
 
-	db.collection('IdController').findOneAndDelete({},function(err,data) {
-            if (err) {console.log("Fail findind the counter"); }
-
-            db.collection('IdController').insertOne(newc,function(err, collection){
-            if (err) {console.log("Fail inserting the update counter"); }  });
-        });
+    console.log(data);
+    console.log(data.count);
+  });
 
         return count;
   }
