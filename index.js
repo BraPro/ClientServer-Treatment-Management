@@ -204,7 +204,7 @@ app.get('/display', (req, res) => {
 app.post('/edit', (req, res) => {         // specifies the document to update
      console.log(req.body);
      var data = {
-        "WorkId": req.body.WorkId,
+        "WorkId": parseInt(req.body.WorkId, 10),
         "WorkDesc" : req.body.WorkDesc, 
         "Date" : req.body.Date,
         "Carnumber" : req.body.Carnumber
@@ -245,7 +245,7 @@ app.post('/adder', (req, res) => {
 app.post('/delete', (req, res) => {
 
   console.log(req.body);
-	db.collection('cars').findOneAndDelete({ WorkId:req.body.WorkId}, function(err, user) 
+	db.collection('cars').findOneAndDelete({ WorkId:parseInt(req.body.WorkId, 10)}, function(err, user) 
   {
     if(user ===null ){
 		
