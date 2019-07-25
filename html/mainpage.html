@@ -141,7 +141,7 @@
                     'Date' : req.body.Date,
                     'Carnumber' : req.body.Carnumber
                 }
-                alert(jason.body);
+                alert(json.body);
                 $.ajax({
                     url: '/edit',
                     type: 'POST',
@@ -151,7 +151,7 @@
                     }
                 });
             }
-       } );
+       });
  
         // Delete a record
         $('#workTable').on('click', 'a.editor_remove', function (e) {
