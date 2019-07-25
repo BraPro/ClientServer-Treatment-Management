@@ -189,7 +189,7 @@ console.log(req.body.conemail);
 
 ///////////Tables Add+Edit+Delete////////////
 ///Select from////
-app.get('/work', (req, res) => {
+app.get('/display', (req, res) => {
      console.log("Select Table");
         db.collection('cars').find({}).project({ _id: 0}).toArray( (err,data ) => {
             if (!err) {
@@ -200,7 +200,7 @@ app.get('/work', (req, res) => {
         } );
 });
 ///Edit by workid////
-/*app.PUT('/work', (req, res) => {
+app.post('/edit', (req, res) => {
        console.log(req.body);
         db.collection('cars').updateOne({ "WorkId" : req.body.WorkId}, // specifies the document to update
     {
@@ -215,9 +215,10 @@ app.get('/work', (req, res) => {
                 console.log('Error in retrieving cars list :' + err);
             }
         } );
-});*/
+});
+
 ///Add by workid////
-app.post('/work', (req, res) => {
+app.post('/add', (req, res) => {
     console.log(req.body);
     var data = { 
      "WorkId" : GetWorkid(), 
@@ -234,7 +235,7 @@ app.post('/work', (req, res) => {
 });
 
 ///Delete by workid////
-/*app.DELETE('/work', (req, res) => {
+app.post('/delete', (req, res) => {
 
   console.log(req.body);
 	db.collection('cars').findOneAndDelete({ WorkId:req.body.WorkId}, function(err, user) 
@@ -250,7 +251,7 @@ app.post('/work', (req, res) => {
           res.json({ok:'Record deleted Successfully'});       
       };  
       });       
-});*/
+});
 
 ////////////////////////////////////////////
 
