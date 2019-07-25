@@ -221,7 +221,7 @@ app.post('/edit', (req, res) => {         // specifies the document to update
      });   
 
 ///Add by workid////
-app.post('/add', (req, res) => {
+app.post('/adder', (req, res) => {
     console.log(req.body);
     var wid = GetWorkid();
     var dt =displayTime();
