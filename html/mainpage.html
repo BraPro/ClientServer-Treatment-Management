@@ -138,7 +138,7 @@
                 }
                 $.ajax({
                     url: '/edit',
-                    type: 'post',
+                    type: 'POST',
                     data: json,
                     success: function(result) {
                         $tdElement.innerHTML = workDesc
@@ -150,7 +150,6 @@
         // Delete a record
         $('#workTable').on('click', 'a.editor_remove', function (e) {
             e.preventDefault();
-            
             var answer = confirm("Do you want to delete selected item?")
             if (answer) {
                 var $row = $(this).closest("tr");
@@ -159,7 +158,7 @@
 				
                 $.ajax({
                     url: '/delete',
-                    type: 'DELETE',
+                    type: 'POST',
 					data: id,
                     success: function(result) {
                         myTable.destroy();
