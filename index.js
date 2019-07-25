@@ -263,22 +263,15 @@ app.post('/delete', (req, res) => {
 function GetWorkid() {
 	var count;
 	var ObjectID = require('mongodb').ObjectID;
-	db.collection('IdController').findOne({}).toArray( (err,data ) => {
-            if (!err) {
+	db.collection('IdController').findOneAndDelete({}).toArray( (err,data ) => {
+            if (err) {console.log("Fail findind the counter"); }
 				    count=data.count;
-				    count++;
-				      db.collection('IdController').updateOne({ "_id" : ObjectID("5d3864e81c9d440000899980")}, // specifies the document to update
-					{
-					$set: {"Count" : count},
-					$currentDate: { "lastModified": true }
-					})
-				  return count; 
-				  
-          }else {
-                console.log('Error in retrieving cars list :' + err);
-				return 1;
-            }
-        } );
+            count++;
+            db.collection('cars').insertOne(count,function(err, collection){
+            if (err) {console.log("Fail inserting the update counter"); }  });
+        });
+
+        return count;
   }
 
   

@@ -116,7 +116,7 @@
         }
  
          // Edit record
-        $('#workTable').on('click', 'a.editor_edit', function (e) {
+        $('#workTable').on('click','a.editor_edit', function (e) {
             e.preventDefault();
             if($(this).context.innerHTML=="Edit")
             {
@@ -124,8 +124,8 @@
                 var $row = $(this).closest("tr");
                 var $tdElement = $row.find("td")[1];
                 var txt = $tdElement.innerHTML;
-                $tdElement.innerHTML =  txt ;
-
+                $tdElement.innerHTML = "<input style='width:100%;background-color: rgba(255, 255, 128, .5);' type='text' value='" + txt + "'>";
+                
             }
             else{
                 $(this).context.innerText ="Edit";
