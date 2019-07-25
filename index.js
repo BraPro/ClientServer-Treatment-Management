@@ -265,10 +265,12 @@ app.post('/delete', (req, res) => {
 function GetWorkid() {
 	var count;
 	var ObjectID = require('mongodb').ObjectID;
-	db.collection('IdController').findOneAndDelete({ projection: { _id: 0 } },function(err,data) {
+	db.collection('IdController').findOneAndDelete({},function(err,data) {
             if (err) {console.log("Fail findind the counter"); }
-				    count=data.count;
+            count=data.count;
+            console.log(count);
             count++;
+            console.log(count);
             var newc={
               'count':count
             }
