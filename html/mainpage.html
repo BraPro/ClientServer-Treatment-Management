@@ -124,7 +124,8 @@
                 var $row = $(this).closest("tr");
                 var $tdElement = $row.find("td")[1];
                 var txt = $tdElement.innerHTML;
-                $tdElement.innerHTML = "<input style='width:100%;background-color: rgba(255, 255, 128, .5);' type='text' value='" + txt + "'>";
+                $tdElement.innerHTML =  txt ;
+
             }
             else{
                 $(this).context.innerText ="Edit";
@@ -140,6 +141,7 @@
                     'Date' : req.body.Date,
                     'Carnumber' : req.body.Carnumber
                 }
+                alert(jason.body);
                 $.ajax({
                     url: '/edit',
                     type: 'POST',
