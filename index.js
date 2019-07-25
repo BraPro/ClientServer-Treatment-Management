@@ -274,7 +274,7 @@ function displayTime() {
 	var day = currentTime.getDate();
     var hours = currentTime.getHours();
     var minutes = currentTime.getMinutes();
-    var seconds = currentTime.getSeconds();
+
 
 	if (day < 10) {
         day = "0" + day;
@@ -290,12 +290,10 @@ function displayTime() {
     if (minutes < 10) {
         minutes = "0" + minutes;
     }
-	if (seconds < 10) {
-        seconds = "0" + seconds;
-    }
+
 	
 	str += day+"/"+month+"/"+year+" ";
-    str += hours + ":" + minutes + ":" + seconds + " ";
+    str += hours + ":" + minutes +" ";
 
     return str;
 }
