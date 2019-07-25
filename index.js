@@ -202,25 +202,23 @@ app.get('/display', (req, res) => {
 ///Edit by workid////
 app.post('/edit', (req, res) => {         // specifies the document to update
      console.log(req.body);
-
-     db.collection('cars').findOne({WorkId:req.body.WorkId}, function(err, work){
-      if (err){
-       console.log('Error in find a workid from cars list :' + err);
-       res.send(err);
-      }
-       
-       work.WorkDesc=req.body.WorkDesc;
-       work.save(function(err){
-        if (err){
-       console.log('Error in find a workid from cars list :' + err);
-       res.send(err);
-        }
-
-        res.json({ok:'Successful updated'});
-
-       });
-   });    
-});
+     var data = {
+        "WorkId": req.body.WorkId,
+        "WorkDesc" : req.body.WorkDesc, 
+        "Date" : req.body.Date,
+        "Carnumber" : req.body.Carnumber
+     }
+   
+     db.collection('cars').findOneAndDelete({WorkId:req.body.WorkId}, function(err, user) 
+     {
+           db.collection('cars').insertOne(data,function(err, collection){ 
+             if (err) throw err; 
+             console.log("Record Updated Successfully");
+             res.redirect("edittreatment"); 
+             });      
+      
+       });  
+     });   
 
 ///Add by workid////
 app.post('/add', (req, res) => {
