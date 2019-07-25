@@ -262,7 +262,7 @@ app.post('/delete', (req, res) => {
 
 ////Utility Functions////
 
-function GetWorkid() {
+/*function GetWorkid() {
 	var count;
 	var ObjectID = require('mongodb').ObjectID;
 	db.collection('IdController').findOneAndDelete({},function(err,data) {
@@ -277,7 +277,7 @@ function GetWorkid() {
         });
 
         return count;
-  }
+  }*/
 
   
 function displayTime() {
