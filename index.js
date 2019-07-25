@@ -270,7 +270,7 @@ function displayTime() {
 
     var currentTime = new Date();
 	var year = currentTime.getFullYear() ;           
-	var month = currentTime.getMonth();
+	var month = currentTime.getMonth() + 1;
 	var day = currentTime.getDate();
     var hours = currentTime.getHours();
     var minutes = currentTime.getMinutes();
