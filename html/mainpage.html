@@ -133,16 +133,16 @@
                 var $tdElement = $row.find("td")[1];
                 var workId = $row.find("td")[0].innerHTML;
                 var workDesc = $row.find("td").find("input").first().val();
-                var Date = $row.find("td")[2].innerHTML;
+                var Datush = $row.find("td")[2].innerHTML;
                 var Carnumber= $row.find("td")[3].innerHTML;
-                
+
                 var json = {
                     'WorkId': workId,
                     'WorkDesc': workDesc,
-                    'Date' : req.body.Date,
-                    'Carnumber' : req.body.Carnumber,
+                    'Date' : Datush,
+                    'Carnumber' : Carnumber,
                 }
-                alert("2");
+                
                 $.ajax({
                     url: '/edit',
                     type: 'POST',

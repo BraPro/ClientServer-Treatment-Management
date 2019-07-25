@@ -264,16 +264,23 @@ app.post('/delete', (req, res) => {
 
 function GetWorkid() {
 	var count;
-	var ObjectID = require('mongodb').ObjectID;
+  var ObjectID = require('mongodb').ObjectID;
+  
+  db.collection('IdController').find({}).project({ _id: 0}).toArray( (err,data) => {
+    if (err) {
+      console.log('Error in retrieving cars list :' + err);
+    }});
+    count=data[0].toObject();
+    console.log(count);
+    count++;
+    console.log(count);
+    var newc={
+      'count':count
+    }
+
 	db.collection('IdController').findOneAndDelete({},function(err,data) {
             if (err) {console.log("Fail findind the counter"); }
-            count=data.count;
-            console.log(count);
-            count++;
-            console.log(count);
-            var newc={
-              'count':count
-            }
+
             db.collection('IdController').insertOne(newc,function(err, collection){
             if (err) {console.log("Fail inserting the update counter"); }  });
         });
