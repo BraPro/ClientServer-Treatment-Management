@@ -267,14 +267,15 @@ function GetWorkid() {
   var ObjectID = require('mongodb').ObjectID;
 
 
-  Controller.findByIdAndUpdate("5d3926c821988b001709ed91", {$inc: {count:1}}, function (err, data) {    
+  db.collection('IdController').findByIdAndUpdate("5d3926c821988b001709ed91", {$inc: {count:1}}, function (err, data) {    
    
     if (err) {
       console.log('Error in retrieving cars list :' + err);
     }
-
+    
     console.log(data);
     console.log(data.count);
+
   });
 
         return count;
