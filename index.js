@@ -204,13 +204,13 @@ app.get('/display', (req, res) => {
 app.post('/edit', (req, res) => {         // specifies the document to update
      console.log(req.body);
      var data = {
-        "WorkId": parseInt(req.body.WorkId, 10),
+        "WorkId":parseInt(req.body.WorkId, 10),
         "WorkDesc" : req.body.WorkDesc, 
         "Date" : req.body.Date,
         "Carnumber" : req.body.Carnumber
      }
    
-     db.collection('cars').findOneAndDelete({WorkId:req.body.WorkId}, function(err, user) 
+     db.collection('cars').findOneAndDelete({WorkId:parseInt(req.body.WorkId, 10)}, function(err, user) 
      {
            db.collection('cars').insertOne(data,function(err, collection){ 
              if (err) throw err; 
