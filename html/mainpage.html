@@ -149,6 +149,9 @@
                     data: json,
                     success: function(result) {
                         $tdElement.innerHTML = workDesc;
+                        myTable.destroy();
+                        loadTable();
+                        alert("The Treatment has been edited successfully");
                     }
                 });
             }
@@ -173,6 +176,7 @@
                     success: function(result) {
                         myTable.destroy();
                         loadTable();
+                        alert("The Treatment has been deleted successfully");
                     }
                 });
             }
@@ -194,6 +198,9 @@
             response.done(function(){
                 myTable.destroy();
                 loadTable();
+                document.getElementById('inputOwnerCarNumber').value = "";
+                document.getElementById('inputTreatmentInformation').value = "";
+                alert("The Treatment has been added successfully");
             });
         });
     </script>
