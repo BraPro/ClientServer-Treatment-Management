@@ -215,7 +215,7 @@ app.post('/edit', (req, res) => {         // specifies the document to update
            db.collection('cars').insertOne(data,function(err, collection){ 
              if (err) throw err; 
              console.log("Record Updated Successfully");
-             res.redirect("edittreatment"); 
+             res.json({ok:'Record Updated Successfully'}); 
              });      
       
        });  
