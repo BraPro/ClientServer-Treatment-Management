@@ -202,7 +202,14 @@ app.get('/display', (req, res) => {
 ///Edit by workid////
 app.post('/edit', (req, res) => {         // specifies the document to update
        console.log(req.body);
-       db.collection('cars').update({ "WorkId" : req.body.WorkId},{$set: {"WorkDesc" : req.body.WorkDesc}}).toArray( (err,data ) => {
+       
+       db.collection('cars').updateOne(
+        { WorkId: req.body.WorkId },
+        {
+          $set: {WorkDesc: req.body.WorkDesc},
+          $currentDate: { lastModified: true }
+        }
+     ).toArray( (err,data ) => {
             if (!err) {
 				  console.log("Record Edited Successfully");
                   res.json({ok:'Record Edited Successfully'}); 
