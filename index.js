@@ -223,10 +223,12 @@ app.post('/edit', (req, res) => {         // specifies the document to update
 ///Add by workid////
 app.post('/add', (req, res) => {
     console.log(req.body);
+    var wid = GetWorkid();
+    var dt =displayTime();
     var data = { 
-     "WorkId" : GetWorkid(), 
+     "WorkId" : wid, 
      "WorkDesc" :req.body.WorkDesc, 
-     "Date" : displayTime(),
+     "Date" : dt,
      "Carnumber" : req.body.Carnumber 
    }
 	
@@ -267,7 +269,10 @@ function GetWorkid() {
             if (err) {console.log("Fail findind the counter"); }
 				    count=data.count;
             count++;
-            db.collection('cars').insertOne(count,function(err, collection){
+            var newc={
+              'count':count
+            }
+            db.collection('cars').insertOne(newc,function(err, collection){
             if (err) {console.log("Fail inserting the update counter"); }  });
         });
 
