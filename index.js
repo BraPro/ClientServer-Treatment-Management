@@ -262,10 +262,10 @@ app.post('/delete', (req, res) => {
 
 ////Utility Functions////
 
-/*function GetWorkid() {
+function GetWorkid() {
 	var count;
 	var ObjectID = require('mongodb').ObjectID;
-	db.collection('IdController').findOneAndDelete({},function(err,data) {
+	db.collection('IdController').findOneAndDelete({ projection: { _id: 0 } },function(err,data) {
             if (err) {console.log("Fail findind the counter"); }
 				    count=data.count;
             count++;
@@ -277,7 +277,7 @@ app.post('/delete', (req, res) => {
         });
 
         return count;
-  }*/
+  }
 
   
 function displayTime() {

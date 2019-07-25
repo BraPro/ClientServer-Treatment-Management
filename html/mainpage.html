@@ -135,13 +135,14 @@
                 var workDesc = $row.find("td").find("input").first().val();
                 var Date = $row.find("td")[2].innerHTML;
                 var Carnumber= $row.find("td")[3].innerHTML;
+                alert("1");
                 var json = {
                     'WorkId': workId,
                     'WorkDesc': workDesc,
                     'Date' : req.body.Date,
                     'Carnumber' : req.body.Carnumber
                 }
-
+                alert("2");
                 $.ajax({
                     url: '/edit',
                     type: 'POST',
@@ -177,10 +178,10 @@
             }
         } );
 
-     $('#AddTreatmentBtn').on('click', addWork());
+     
  
     //add work to DB 
-    function addWork(){
+    $('#AddTreatmentBtn').on('click', function addWork(){
         var carnumber = $('#inputOwnerCarNumber').val();
         var treatmentinfo = $('#inputTreatmentInformation').val();
         
@@ -194,7 +195,7 @@
                 myTable.destroy();
                 loadTable();
             });
-        }
+        });
     </script>
 
 
