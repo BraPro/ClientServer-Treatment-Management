@@ -202,14 +202,24 @@ app.get('/display', (req, res) => {
 ///Edit by workid////
 app.post('/edit', (req, res) => {         // specifies the document to update
      console.log(req.body);
-     db.collection('cars').updateOne({WorkId: req.body.WorkId}, {$set: {WorkDesc: req.body.WorkDesc}}).toArray( (err,data ) => {
-      if (!err) {
-            res.json({ok:'Successful updated'});
-      }else {
-          console.log('Error in retrieving cars list :' + err);
-      } });
- 
-    
+
+     db.collection('cars').findOne({WorkId: req.body.WorkId}, function(err, work){
+      if (err){
+       console.log('Error in find a workid from cars list :' + err);
+       res.send(err);
+      }
+       
+       work.WorkDesc=req.body.WorkDesc;
+       work.save(function(err){
+        if (err){
+       console.log('Error in find a workid from cars list :' + err);
+       res.send(err);
+        }
+
+        res.json({ok:'Successful updated'});
+
+       });
+   });    
 });
 
 ///Add by workid////
