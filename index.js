@@ -272,7 +272,7 @@ function GetWorkid() {
             var newc={
               'count':count
             }
-            db.collection('cars').insertOne(newc,function(err, collection){
+            db.collection('IdController').insertOne(newc,function(err, collection){
             if (err) {console.log("Fail inserting the update counter"); }  });
         });
 
