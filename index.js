@@ -8,6 +8,7 @@ const http = require('http');
 const bodyParser = require('body-parser');
 const urlencodeParser = bodyParser.urlencoded({extended: true});
 var nodemailer=require('nodemailer');
+var counter=30;
 
 
 
@@ -223,7 +224,8 @@ app.post('/edit', (req, res) => {         // specifies the document to update
 ///Add by workid////
 app.post('/adder', (req, res) => {
     console.log(req.body);
-    var wid = GetWorkid();
+    counter++;
+    var wid = counter;
     var dt =displayTime();
     var data = { 
      "WorkId" : wid, 
@@ -272,7 +274,7 @@ function GetWorkid() {
     if (err) {
       console.log('Error in retrieving cars list :' + err);
     }
-    
+
     console.log(data);
     console.log(data.count);
 
