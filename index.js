@@ -203,7 +203,7 @@ app.get('/display', (req, res) => {
 app.post('/edit', (req, res) => {         // specifies the document to update
      console.log(req.body);
 
-     db.collection('cars').findOne({WorkId: req.body.WorkId}, function(err, work){
+     db.collection('cars').findOne({WorkId:req.body.WorkId}, function(err, work){
       if (err){
        console.log('Error in find a workid from cars list :' + err);
        res.send(err);
