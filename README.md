@@ -1,4 +1,4 @@
-# Basic Website
+# ClientServer-Treatment-Management
 Client-Server course project / ORT Braude College / Date: 7/2019\
 A semester mini web project, included knowledge of new web technologies
 
