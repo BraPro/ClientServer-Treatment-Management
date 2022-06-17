@@ -1,5 +1,9 @@
 # Basic Website
 Client and Server course project / ORT Braude College / Date: 7/2019\
-A basic website project focusing on the connection between client and server.\
-Having Login,Sign in,Recovery password,Contact Form,Table Management(add treatment, edit,delete) pages.\
-Using HTML, CSS, Heroku, MongoDB Atlas, NodeJS
+A semester mini web project, included knowledge of new web technologies
+
+Highlights of the project:\
+- Client side development used: HTML5, bootstrap, JavaScript(jQuery)\
+- Server side development used: Node.js with a MongoDB database.\
+- Worked with GitHub & Heroku.\
+- System functionality: sending email, signup & signin, recovering password, adding & deleting & editing a vehicle treatment, retrieve treatment records, records are\ shown in a table with sorting & paging & searching.\
